@@ -101,9 +101,10 @@ interface BadgeProps {
   size?: 'sm' | 'md';
   children: React.ReactNode;
   dot?: boolean;
+  style?: React.CSSProperties;
 }
 
-export function Badge({ variant = 'neutral', size = 'sm', children, dot }: BadgeProps) {
+export function Badge({ variant = 'neutral', size = 'sm', children, dot, style }: BadgeProps) {
   const colorMap: Record<string, { bg: string; color: string; border: string }> = {
     primary:   { bg: 'var(--primary-dim)',   color: 'var(--primary)',   border: 'rgba(0,212,170,0.25)' },
     secondary: { bg: 'var(--secondary-dim)', color: 'var(--secondary)', border: 'rgba(99,102,241,0.25)' },
@@ -129,6 +130,7 @@ export function Badge({ variant = 'neutral', size = 'sm', children, dot }: Badge
       fontWeight: 500,
       fontFamily: 'var(--font-body)',
       lineHeight: 1.5,
+      ...style,
     }}>
       {dot && (
         <span style={{
