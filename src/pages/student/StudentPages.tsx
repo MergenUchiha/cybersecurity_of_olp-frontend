@@ -822,7 +822,7 @@ export function CourseDetailPage() {
     });
 
     if (isLoading) return <PageLoader />;
-    if (!course) return <EmptyState title="Course not found" />;
+    if (!course) return <EmptyState title={t.courses.courseNotFound} />;
     const color = CARD_COLORS[course.title.charCodeAt(0) % CARD_COLORS.length];
 
     return (
@@ -1026,7 +1026,7 @@ export function CourseDetailPage() {
             {course.lessons?.length === 0 ? (
                 <EmptyState
                     icon={<BookOpen size={32} />}
-                    title="No lessons yet"
+                    title={t.courses.noLessonsYet}
                 />
             ) : (
                 <div
@@ -1046,7 +1046,7 @@ export function CourseDetailPage() {
                             onClick={() =>
                                 enrollCheck?.enrolled
                                     ? setSelectedLesson(lesson)
-                                    : toast.error("Enroll to access lessons")
+                                    : toast.error(t.courses.enrollToAccess)
                             }
                         />
                     ))}
@@ -1934,7 +1934,7 @@ export function MyResultsPage() {
         <div style={{ animation: "fadeInUp 0.4s ease" }}>
             <SectionHeader
                 title={`My ${t.quiz.title} Results`}
-                subtitle={`${attempts?.length || 0} total attempts`}
+                subtitle={`${attempts?.length || 0} ${t.quiz.totalAttempts}`}
             />
             <div
                 style={{
@@ -1945,7 +1945,7 @@ export function MyResultsPage() {
                 }}
             >
                 <StatCard
-                    label="Total Attempts"
+                    label={t.quiz.totalAttempts}
                     value={attempts?.length || 0}
                     icon={<Target size={20} />}
                     color="primary"
@@ -1958,7 +1958,7 @@ export function MyResultsPage() {
                     delay={0.05}
                 />
                 <StatCard
-                    label="Failed"
+                    label={t.quiz.failed}
                     value={failed}
                     icon={<XCircle size={20} />}
                     color="danger"
@@ -2085,7 +2085,7 @@ export function MyResultsPage() {
             <Modal
                 open={!!reviewId}
                 onClose={() => setReviewId(null)}
-                title="Quiz Review"
+                title={t.quiz.quizReview}
                 size="lg"
             >
                 {reviewId && <AttemptReview attemptId={reviewId} />}
@@ -2337,7 +2337,7 @@ export function QuizPage() {
     });
 
     if (isLoading) return <PageLoader />;
-    if (!quiz) return <EmptyState title="Quiz not found" />;
+    if (!quiz) return <EmptyState title={t.quiz.quizNotFound} />;
 
     const answeredCount = Object.keys(answers).length;
     const totalQ = quiz.questions?.length || 0;

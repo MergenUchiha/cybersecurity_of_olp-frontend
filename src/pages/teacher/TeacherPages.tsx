@@ -268,7 +268,7 @@ export function TeacherCoursesPage() {
     const createMutation = useMutation({
         mutationFn: coursesApi.create,
         onSuccess: () => {
-            toast.success("Course created!");
+            toast.success(t.courses.courseCreated);
             qc.invalidateQueries({ queryKey: ["my-courses"] });
             reset();
             setCreateOpen(false);
@@ -281,7 +281,7 @@ export function TeacherCoursesPage() {
     const deleteMutation = useMutation({
         mutationFn: coursesApi.delete,
         onSuccess: () => {
-            toast.success("Course deleted");
+            toast.success(t.courses.courseDeletedMsg);
             qc.invalidateQueries({ queryKey: ["my-courses"] });
         },
     });
@@ -504,7 +504,7 @@ export function CourseEditPage() {
     const updateMutation = useMutation({
         mutationFn: (data: any) => coursesApi.update(id!, data),
         onSuccess: () => {
-            toast.success("Updated!");
+            toast.success(t.courses.updated);
             qc.invalidateQueries({ queryKey: ["course", id] });
             setEditMode(false);
         },
@@ -520,7 +520,7 @@ export function CourseEditPage() {
             videoUrl: string;
         }) => lessonsApi.create(id!, data),
         onSuccess: () => {
-            toast.success("Lesson added!");
+            toast.success(t.courses.lessonAdded);
             qc.invalidateQueries({ queryKey: ["course", id] });
             setAddLessonOpen(false);
             resetLesson();
@@ -538,7 +538,7 @@ export function CourseEditPage() {
     } = useForm<{ title: string; content: string; videoUrl: string }>();
 
     if (isLoading) return <PageLoader />;
-    if (!course) return <EmptyState title="Course not found" />;
+    if (!course) return <EmptyState title={t.courses.courseNotFound} />;
 
     return (
         <div style={{ animation: "fadeInUp 0.4s ease", maxWidth: "900px" }}>
@@ -731,7 +731,7 @@ export function CourseEditPage() {
             {/* Lessons */}
             <SectionHeader
                 title={`${t.courses.lessons} (${course.lessons?.length || 0})`}
-                subtitle="Manage course content"
+                subtitle={t.courses.manageCourseContent}
                 action={
                     <Button
                         leftIcon={<Plus size={16} />}
@@ -1098,7 +1098,7 @@ function AddQuizModal({
                     answerOptions: q.options.filter((o) => o.text.trim()),
                 });
             }
-            toast.success("Quiz created with questions!");
+            toast.success(t.courses.quizCreated);
             onSuccess();
         } catch {}
     };

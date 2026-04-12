@@ -83,17 +83,51 @@ export function Sidebar({ mobile, onClose }: SidebarProps) {
       position: 'fixed', top: 0, left: 0,
       zIndex: mobile ? 200 : 100, overflowY: 'auto',
     }}>
-      <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, var(--primary), var(--accent))', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Shield size={18} color="var(--text-inverse)" />
+      {/* Logo & Title */}
+      <div style={{
+        padding: '16px 16px 14px',
+        borderBottom: '1px solid var(--border)',
+        display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
+        flexShrink: 0,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', flex: 1, minWidth: 0 }}>
+          {/* University Logo */}
+          <div style={{
+            width: 44, height: 44, flexShrink: 0,
+            borderRadius: '10px', overflow: 'hidden',
+            border: '1px solid var(--border-strong)',
+            background: '#fff',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <img
+              src="/logo.jpeg"
+              alt="University Logo"
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
           </div>
-          <div>
-            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1rem', lineHeight: 1.2, color: 'var(--text-primary)' }}>CyberLearn</p>
-            <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>v1.0 • Secure LMS</p>
+          {/* Title */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <p style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 800,
+              fontSize: '0.72rem',
+              lineHeight: 1.35,
+              color: 'var(--text-primary)',
+              whiteSpace: 'normal',
+              wordBreak: 'break-word',
+            }}>
+              {t.app.fullName}
+            </p>
+            <p style={{ fontSize: '0.6rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginTop: '3px' }}>
+              {t.app.version}
+            </p>
           </div>
         </div>
-        {mobile && <button onClick={onClose} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}><X size={20} /></button>}
+        {mobile && (
+          <button onClick={onClose} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', flexShrink: 0 }}>
+            <X size={20} />
+          </button>
+        )}
       </div>
 
       <nav style={{ flex: 1, padding: '12px 0', overflowY: 'auto' }}>

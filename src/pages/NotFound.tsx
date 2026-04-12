@@ -50,19 +50,19 @@ export function NotFoundPage() {
         </div>
 
         <h1 style={{ fontSize: '1.625rem', marginBottom: '12px', fontFamily: 'var(--font-display)' }}>
-          Page Not Found
+          {t.notFound.title}
         </h1>
         <p style={{ color: 'var(--text-muted)', marginBottom: '36px', lineHeight: 1.7, fontSize: '0.9375rem' }}>
-          The page you're looking for doesn't exist or has been moved.
+          {t.notFound.description}
         </p>
 
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Button variant="ghost" leftIcon={<ArrowLeft size={16} />} onClick={() => navigate(-1)}>
-            Go Back
+            {t.notFound.goBack}
           </Button>
           <Link to="/">
             <Button leftIcon={<Home size={16} />}>
-              Go Home
+              {t.notFound.goHome}
             </Button>
           </Link>
         </div>

@@ -26,11 +26,11 @@ export function ProfilePage() {
 
   const updateMutation = useMutation({
     mutationFn: usersApi.updateProfile,
-    onSuccess: (updated) => { setUser({ ...user!, ...updated }); toast.success('Profile updated!'); setEditMode(false); },
+    onSuccess: (updated) => { setUser({ ...user!, ...updated }); toast.success(t.profile.profileUpdated); setEditMode(false); },
   });
   const changePwdMutation = useMutation({
     mutationFn: (d: { currentPassword: string; newPassword: string }) => authApi.changePassword(d),
-    onSuccess: () => { toast.success('Password changed!'); setChangePassMode(false); resetPass(); },
+    onSuccess: () => { toast.success(t.profile.passwordChanged); setChangePassMode(false); resetPass(); },
   });
 
   const roleColorMap: Record<string, string> = { ADMIN: 'var(--danger)', TEACHER: 'var(--warning)', STUDENT: 'var(--primary)' };
@@ -52,7 +52,7 @@ export function ProfilePage() {
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               <Badge variant={user?.role === 'ADMIN' ? 'danger' : user?.role === 'TEACHER' ? 'warning' : 'primary'} dot>{user?.role}</Badge>
               {user?.emailVerified ? <Badge variant="success" dot>{t.profile.emailVerified}</Badge> : <Badge variant="warning" dot>{t.profile.notVerified}</Badge>}
-              {!user?.isBlocked && user?.isActive && <Badge variant="success" dot>Active</Badge>}
+              {!user?.isBlocked && user?.isActive && <Badge variant="success" dot>{t.common.active}</Badge>}
             </div>
           </div>
           <Button size="sm" variant="outline" onClick={() => setEditMode(!editMode)} leftIcon={<User size={14} />}>
@@ -81,7 +81,7 @@ export function ProfilePage() {
               { label: t.common.email, value: user?.email },
               { label: t.common.role, value: user?.role },
               { label: t.profile.memberSince, value: user?.createdAt ? format(new Date(user.createdAt), 'MMMM d, yyyy') : '—' },
-              { label: t.profile.emailVerified, value: user?.emailVerified ? '✓ Yes' : '✗ No' },
+              { label: t.profile.emailVerified, value: user?.emailVerified ? `✓ ${t.common.yes}` : `✗ ${t.common.no}` },
             ].map(({ label, value }) => (
               <div key={label}>
                 <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '2px', fontWeight: 500 }}>{label}</p>
@@ -101,11 +101,11 @@ export function ProfilePage() {
             </div>
             <div>
               <h3 style={{ fontSize: '1rem', marginBottom: '2px' }}>{t.profile.changePassword}</h3>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Keep your account secure</p>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{t.profile.keepSecure}</p>
             </div>
           </div>
           <Button variant="outline" size="sm" onClick={() => setChangePassMode(!changePassMode)}>
-            {changePassMode ? t.common.cancel : 'Change'}
+            {changePassMode ? t.common.cancel : t.common.change}
           </Button>
         </div>
         {changePassMode && (
@@ -114,7 +114,7 @@ export function ProfilePage() {
             changePwdMutation.mutate({ currentPassword: d.currentPassword, newPassword: d.newPassword });
           })} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <Input label={t.profile.currentPassword} type="password" {...regPass('currentPassword', { required: true })} />
-            <Input label={t.profile.newPassword} type="password" hint="Min 8 characters" {...regPass('newPassword', { required: true, minLength: 8 })} />
+            <Input label={t.profile.newPassword} type="password" hint={t.profile.minChars} {...regPass('newPassword', { required: true, minLength: 8 })} />
             <Input label={t.profile.confirmNewPassword} type="password" {...regPass('confirmNew', { required: true })} />
             <Button type="submit" loading={changePwdMutation.isPending}>{t.profile.changePassword}</Button>
           </form>
@@ -144,8 +144,8 @@ export function MySessionsPage() {
   // ✅ ADMIN-only: revoke individual session (the route requires ADMIN role)
   const revokeOneMutation = useMutation({
     mutationFn: sessionsApi.revoke,
-    onSuccess: () => { toast.success('Session revoked'); qc.invalidateQueries({ queryKey: ['my-sessions'] }); },
-    onError: () => toast.error('Only admins can revoke sessions directly'),
+    onSuccess: () => { toast.success(t.profile.sessionRevoked); qc.invalidateQueries({ queryKey: ['my-sessions'] }); },
+    onError: () => toast.error(t.profile.onlyAdminsRevoke),
   });
 
   // ✅ For non-admins: sign out of ALL other sessions by triggering a password flow
@@ -157,7 +157,7 @@ export function MySessionsPage() {
       return sessionsApi.revokeAllUser(user.id);
     },
     onSuccess: () => {
-      toast.success('All sessions revoked');
+      toast.success(t.profile.allSessionsRevoked);
       qc.invalidateQueries({ queryKey: ['my-sessions'] });
     },
     onError: (err: any) => {
@@ -174,7 +174,7 @@ export function MySessionsPage() {
     <div style={{ animation: 'fadeInUp 0.4s ease', maxWidth: '720px' }}>
       <SectionHeader
         title={t.profile.mySessionsTitle}
-        subtitle={`${sessions?.length || 0} active sessions`}
+        subtitle={`${sessions?.length || 0} ${t.profile.activeSessions}`}
         action={
           sessions && sessions.length > 1 ? (
             <Button
@@ -183,7 +183,7 @@ export function MySessionsPage() {
               leftIcon={<AlertTriangle size={14} />}
               onClick={() => setConfirmRevokeAll(true)}
             >
-              {isAdmin ? 'Revoke All' : 'Sign Out All Devices'}
+              {isAdmin ? t.profile.revokeAllSessions : t.profile.signOutAllDevices}
             </Button>
           ) : undefined
         }
@@ -194,7 +194,7 @@ export function MySessionsPage() {
         <div style={{ background: 'var(--info-dim)', border: '1px solid rgba(59,130,246,0.25)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', marginBottom: '20px', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
           <Info size={16} color="var(--info)" style={{ flexShrink: 0, marginTop: 2 }} />
           <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-            Sessions shown are your active logins. To force sign-out from all devices, change your password — this automatically revokes all other sessions.
+            {t.profile.sessionsInfo}
           </p>
         </div>
       )}
@@ -202,7 +202,7 @@ export function MySessionsPage() {
       {!sessions?.length ? (
         <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-xl)', padding: '48px', textAlign: 'center' }}>
           <Activity size={48} color="var(--text-muted)" style={{ margin: '0 auto 16px' }} />
-          <p style={{ color: 'var(--text-muted)' }}>No active sessions found</p>
+          <p style={{ color: 'var(--text-muted)' }}>{t.profile.noActiveSessions}</p>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -224,12 +224,12 @@ export function MySessionsPage() {
         open={confirmRevokeAll}
         onClose={() => setConfirmRevokeAll(false)}
         onConfirm={() => { revokeAllMutation.mutate(); }}
-        title={isAdmin ? 'Revoke All Sessions' : 'Sign Out All Devices'}
+        title={isAdmin ? t.profile.revokeAllSessions : t.profile.signOutAllDevices}
         message={isAdmin
-          ? 'This will terminate all your active sessions. You will need to log in again.'
-          : 'To sign out from all devices, you need to change your password. Go to Profile → Change Password.'
+          ? t.profile.revokeAllConfirm
+          : t.profile.signOutAllInfo
         }
-        confirmLabel={isAdmin ? 'Revoke All' : 'Got it'}
+        confirmLabel={isAdmin ? t.admin.revokeAll : t.profile.gotIt}
         danger={isAdmin}
       />
     </div>
@@ -289,7 +289,7 @@ function SessionCard({ session: s, isCurrent, canRevoke, onRevoke, revoking, t }
             {browser} — {os}
           </p>
           {isCurrent && <Badge variant="success" dot>{t.profile.current}</Badge>}
-          {isExpiringSoon && !isCurrent && <Badge variant="warning">Expiring soon</Badge>}
+          {isExpiringSoon && !isCurrent && <Badge variant="warning">{t.profile.expiringSoon}</Badge>}
         </div>
 
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>

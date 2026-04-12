@@ -1,6 +1,7 @@
 import React from 'react';
 import { Loader2 } from 'lucide-react';
 import clsx from 'clsx';
+import { useUIStore } from '../../lib/uiStore';
 
 // ─── Button ─────────────────────────────────────────────
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -162,6 +163,7 @@ export function Spinner({ size = 24, color }: { size?: number; color?: string })
 }
 
 export function PageLoader() {
+  const { t } = useUIStore();
   return (
     <div style={{
       display: 'flex',
@@ -172,7 +174,7 @@ export function PageLoader() {
       gap: '16px',
     }}>
       <Spinner size={40} />
-      <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Loading...</p>
+      <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>{t.common.loading}</p>
     </div>
   );
 }

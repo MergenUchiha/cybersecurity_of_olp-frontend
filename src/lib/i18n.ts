@@ -49,6 +49,19 @@ export interface Translations {
     loggedOut: string;
     welcomeMsg: string;
     accountCreated: string;
+    required: string;
+    mustContainUppercase: string;
+    mustContainNumber: string;
+    firstNamePlaceholder: string;
+    lastNamePlaceholder: string;
+    passwordHint: string;
+    repeatPassword: string;
+    checkEmail: string;
+    resetLinkSent: string;
+    useToken: string;
+    backToLogin: string;
+    passwordResetDone: string;
+    secureLms: string;
   };
   // Common
   common: {
@@ -93,6 +106,10 @@ export interface Translations {
     categories: string;
     close: string;
     skipForNow: string;
+    change: string;
+    student: string;
+    teacher: string;
+    admin: string;
   };
   // Dashboard
   dashboard: {
@@ -162,6 +179,15 @@ export interface Translations {
     myCourseDesc: string;
     notEnrolledTitle: string;
     notEnrolledDesc: string;
+    courseNotFound: string;
+    noLessonsYet: string;
+    enrollToAccess: string;
+    manageCourseContent: string;
+    courseCreated: string;
+    updated: string;
+    lessonAdded: string;
+    quizCreated: string;
+    courseDeletedMsg: string;
   };
   // Quiz
   quiz: {
@@ -182,6 +208,11 @@ export interface Translations {
     timeLeft: string;
     takeQuiz: string;
     required_pct: string;
+    quizNotFound: string;
+    quizReview: string;
+    totalAttempts: string;
+    failed: string;
+    score: string;
   };
   // Admin
   admin: {
@@ -214,6 +245,24 @@ export interface Translations {
     revokeAll: string;
     lastSeen: string;
     activeSessions: string;
+    userBlocked: string;
+    userUnblocked: string;
+    userDeleted: string;
+    roleChanged: string;
+    courseDeleted: string;
+    sessionRevoked: string;
+    allSessionsRevoked: string;
+    filterByIp: string;
+    securityAnalytics: string;
+    deleteCourse: string;
+    deleteCourseMsg: string;
+    teacherCol: string;
+    statsCol: string;
+    accountsBlocked30d: string;
+    bruteForce30d: string;
+    rateLimited30d: string;
+    failedLoginsLabel: string;
+    failures: string;
   };
   // Profile
   profile: {
@@ -231,6 +280,22 @@ export interface Translations {
     mySessionsTitle: string;
     current: string;
     revoke: string;
+    profileUpdated: string;
+    passwordChanged: string;
+    keepSecure: string;
+    minChars: string;
+    noActiveSessions: string;
+    sessionRevoked: string;
+    onlyAdminsRevoke: string;
+    allSessionsRevoked: string;
+    revokeAllSessions: string;
+    signOutAllDevices: string;
+    signOutAllInfo: string;
+    sessionsInfo: string;
+    activeSessions: string;
+    revokeAllConfirm: string;
+    gotIt: string;
+    expiringSoon: string;
   };
   // Security
   security: {
@@ -254,6 +319,18 @@ export interface Translations {
     last7d: string;
     last30d: string;
     days: string;
+  };
+  // Not Found
+  notFound: {
+    title: string;
+    description: string;
+    goBack: string;
+    goHome: string;
+  };
+  // App
+  app: {
+    fullName: string;
+    version: string;
   };
   // Theme / Language
   settings: {
@@ -289,6 +366,13 @@ const en: Translations = {
     passwordMin: 'Password must be at least 8 characters',
     passwordMatch: 'Passwords do not match', loggedOut: 'Logged out successfully',
     welcomeMsg: 'Welcome back,', accountCreated: 'Account created! Please sign in.',
+    required: 'Required', mustContainUppercase: 'Must contain uppercase',
+    mustContainNumber: 'Must contain number', firstNamePlaceholder: 'John',
+    lastNamePlaceholder: 'Doe', passwordHint: 'Min 8 chars, uppercase, number',
+    repeatPassword: 'Repeat password', checkEmail: 'Check your email',
+    resetLinkSent: 'If an account exists, a reset link has been sent.',
+    useToken: 'Use token →', backToLogin: '← Back to login',
+    passwordResetDone: 'Password reset! Redirecting…', secureLms: 'Secure LMS',
   },
   common: {
     save: 'Save', cancel: 'Cancel', delete: 'Delete', edit: 'Edit', create: 'Create',
@@ -300,6 +384,7 @@ const en: Translations = {
     enrolled: 'Enrolled', draft: 'Draft', live: 'Live', active: 'Active',
     blocked: 'Blocked', verified: 'Verified', all: 'All', students: 'students',
     lessons: 'lessons', categories: 'Categories', close: 'Close', skipForNow: 'Skip for now',
+    change: 'Change', student: 'Student', teacher: 'Teacher', admin: 'Admin',
   },
   dashboard: {
     welcomeBack: 'Welcome back,', continueJourney: 'Continue your learning journey',
@@ -333,6 +418,12 @@ const en: Translations = {
     myCourseTitle: 'My Courses', myCourseDesc: 'enrolled',
     notEnrolledTitle: "You haven't enrolled in any courses",
     notEnrolledDesc: 'Browse available courses and start learning today',
+    courseNotFound: 'Course not found', noLessonsYet: 'No lessons yet',
+    enrollToAccess: 'Enroll to access lessons',
+    manageCourseContent: 'Manage course content',
+    courseCreated: 'Course created!', updated: 'Updated!',
+    lessonAdded: 'Lesson added!', quizCreated: 'Quiz created with questions!',
+    courseDeletedMsg: 'Course deleted',
   },
   quiz: {
     title: 'Quiz', pass: 'PASS', fail: 'FAIL', yourScore: 'Your Score',
@@ -342,6 +433,8 @@ const en: Translations = {
     backToLesson: 'Back to Lesson', viewResults: 'View All Results',
     submitQuiz: 'Submit Quiz', answered: 'answered', timeLeft: 'Time left',
     takeQuiz: 'Take Quiz', required_pct: 'Pass',
+    quizNotFound: 'Quiz not found', quizReview: 'Quiz Review',
+    totalAttempts: 'Total Attempts', failed: 'Failed', score: 'Score',
   },
   admin: {
     users: 'Users', allUsers: 'All Users', blockUser: 'Block User', unblockUser: 'Unblock User',
@@ -354,6 +447,17 @@ const en: Translations = {
     eventsByType: 'Events by Type', userStats: 'Users by Role', blockingStats: 'Blocking Stats',
     manageSessions: 'Manage Sessions', revokeSession: 'Revoke', revokeAll: 'Revoke All',
     lastSeen: 'Last seen', activeSessions: 'Active Sessions',
+    userBlocked: 'User blocked', userUnblocked: 'User unblocked',
+    userDeleted: 'User deleted', roleChanged: 'Role changed',
+    courseDeleted: 'Course deleted', sessionRevoked: 'Session revoked',
+    allSessionsRevoked: 'All sessions revoked', filterByIp: 'Filter by IP...',
+    securityAnalytics: 'Security analytics & platform insights',
+    deleteCourse: 'Delete Course',
+    deleteCourseMsg: 'Permanently delete this course and all its content?',
+    teacherCol: 'Teacher', statsCol: 'Stats',
+    accountsBlocked30d: 'Accounts Blocked (30d)', bruteForce30d: 'Brute Force (30d)',
+    rateLimited30d: 'Rate Limited (30d)', failedLoginsLabel: 'Failed logins',
+    failures: 'Failures',
   },
   profile: {
     title: 'Profile', editProfile: 'Edit Profile', changePassword: 'Change Password',
@@ -362,6 +466,17 @@ const en: Translations = {
     accountInfo: 'Account Info', memberSince: 'Member since', emailVerified: 'Email Verified',
     notVerified: 'Not Verified', mySessionsTitle: 'My Sessions', current: 'Current',
     revoke: 'Revoke',
+    profileUpdated: 'Profile updated!', passwordChanged: 'Password changed!',
+    keepSecure: 'Keep your account secure', minChars: 'Min 8 characters',
+    noActiveSessions: 'No active sessions found', sessionRevoked: 'Session revoked',
+    onlyAdminsRevoke: 'Only admins can revoke sessions directly',
+    allSessionsRevoked: 'All sessions revoked', revokeAllSessions: 'Revoke All Sessions',
+    signOutAllDevices: 'Sign Out All Devices',
+    signOutAllInfo: 'To sign out from all devices, you need to change your password. Go to Profile → Change Password.',
+    sessionsInfo: 'Sessions shown are your active logins. To force sign-out from all devices, change your password — this automatically revokes all other sessions.',
+    activeSessions: 'active sessions',
+    revokeAllConfirm: 'This will terminate all your active sessions. You will need to log in again.',
+    gotIt: 'Got it', expiringSoon: 'Expiring soon',
   },
   security: {
     events: 'Security Events', loginSuccess: 'Login Success', loginFailure: 'Login Failure',
@@ -371,6 +486,15 @@ const en: Translations = {
     roleChange: 'Role Changed', rateLimitTriggered: 'Rate Limit', suspiciousRequest: 'Suspicious',
     accessDenied: 'Access Denied', bruteForceDetected: 'Brute Force', sessionRevoked: 'Session Revoked',
     last24h: 'Last 24h', last7d: 'Last 7 days', last30d: 'Last 30 days', days: 'days',
+  },
+  notFound: {
+    title: 'Page Not Found',
+    description: "The page you're looking for doesn't exist or has been moved.",
+    goBack: 'Go Back', goHome: 'Go Home',
+  },
+  app: {
+    fullName: 'Ensuring and Analyzing Cybersecurity of Online Learning Platforms',
+    version: 'v1.0 • Secure LMS',
   },
   settings: {
     language: 'Language', theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light',
@@ -400,6 +524,13 @@ const ru: Translations = {
     passwordMin: 'Пароль минимум 8 символов',
     passwordMatch: 'Пароли не совпадают', loggedOut: 'Вы вышли из системы',
     welcomeMsg: 'С возвращением,', accountCreated: 'Аккаунт создан! Войдите в систему.',
+    required: 'Обязательно', mustContainUppercase: 'Должен содержать заглавную букву',
+    mustContainNumber: 'Должен содержать цифру', firstNamePlaceholder: 'Иван',
+    lastNamePlaceholder: 'Иванов', passwordHint: 'Мин 8 символов, заглавная, цифра',
+    repeatPassword: 'Повторите пароль', checkEmail: 'Проверьте почту',
+    resetLinkSent: 'Если аккаунт существует, ссылка для сброса отправлена.',
+    useToken: 'Использовать токен →', backToLogin: '← Назад ко входу',
+    passwordResetDone: 'Пароль сброшен! Перенаправление…', secureLms: 'Безопасная LMS',
   },
   common: {
     save: 'Сохранить', cancel: 'Отмена', delete: 'Удалить', edit: 'Изменить', create: 'Создать',
@@ -411,6 +542,7 @@ const ru: Translations = {
     enrolled: 'Записан', draft: 'Черновик', live: 'Активен', active: 'Активен',
     blocked: 'Заблокирован', verified: 'Подтверждён', all: 'Все', students: 'студентов',
     lessons: 'уроков', categories: 'Категории', close: 'Закрыть', skipForNow: 'Пропустить',
+    change: 'Изменить', student: 'Студент', teacher: 'Преподаватель', admin: 'Администратор',
   },
   dashboard: {
     welcomeBack: 'С возвращением,', continueJourney: 'Продолжайте своё обучение',
@@ -444,6 +576,12 @@ const ru: Translations = {
     myCourseTitle: 'Мои курсы', myCourseDesc: 'записан',
     notEnrolledTitle: 'Вы не записаны ни на один курс',
     notEnrolledDesc: 'Обзор доступных курсов и начните обучение',
+    courseNotFound: 'Курс не найден', noLessonsYet: 'Уроков пока нет',
+    enrollToAccess: 'Запишитесь для доступа к урокам',
+    manageCourseContent: 'Управление содержимым курса',
+    courseCreated: 'Курс создан!', updated: 'Обновлено!',
+    lessonAdded: 'Урок добавлен!', quizCreated: 'Тест создан с вопросами!',
+    courseDeletedMsg: 'Курс удалён',
   },
   quiz: {
     title: 'Тест', pass: 'СДАН', fail: 'НЕ СДАН', yourScore: 'Ваш результат',
@@ -453,6 +591,8 @@ const ru: Translations = {
     backToLesson: 'Назад к уроку', viewResults: 'Все результаты',
     submitQuiz: 'Отправить тест', answered: 'отвечено', timeLeft: 'Осталось',
     takeQuiz: 'Пройти тест', required_pct: 'Порог',
+    quizNotFound: 'Тест не найден', quizReview: 'Обзор теста',
+    totalAttempts: 'Всего попыток', failed: 'Неудача', score: 'Балл',
   },
   admin: {
     users: 'Пользователи', allUsers: 'Все пользователи', blockUser: 'Заблокировать',
@@ -467,6 +607,17 @@ const ru: Translations = {
     blockingStats: 'Статистика блокировок', manageSessions: 'Управление сессиями',
     revokeSession: 'Отозвать', revokeAll: 'Отозвать все', lastSeen: 'Последний вход',
     activeSessions: 'Активные сессии',
+    userBlocked: 'Пользователь заблокирован', userUnblocked: 'Пользователь разблокирован',
+    userDeleted: 'Пользователь удалён', roleChanged: 'Роль изменена',
+    courseDeleted: 'Курс удалён', sessionRevoked: 'Сессия отозвана',
+    allSessionsRevoked: 'Все сессии отозваны', filterByIp: 'Фильтр по IP...',
+    securityAnalytics: 'Аналитика безопасности и обзор платформы',
+    deleteCourse: 'Удалить курс',
+    deleteCourseMsg: 'Удалить этот курс и весь его контент навсегда?',
+    teacherCol: 'Преподаватель', statsCol: 'Статистика',
+    accountsBlocked30d: 'Заблокировано (30д)', bruteForce30d: 'Атаки перебором (30д)',
+    rateLimited30d: 'Ограничения (30д)', failedLoginsLabel: 'Неудачные входы',
+    failures: 'Неудачи',
   },
   profile: {
     title: 'Профиль', editProfile: 'Редактировать', changePassword: 'Изменить пароль',
@@ -475,6 +626,17 @@ const ru: Translations = {
     accountInfo: 'Данные аккаунта', memberSince: 'Участник с', emailVerified: 'Email подтверждён',
     notVerified: 'Не подтверждён', mySessionsTitle: 'Мои сессии', current: 'Текущая',
     revoke: 'Отозвать',
+    profileUpdated: 'Профиль обновлён!', passwordChanged: 'Пароль изменён!',
+    keepSecure: 'Защитите свой аккаунт', minChars: 'Минимум 8 символов',
+    noActiveSessions: 'Активных сессий не найдено', sessionRevoked: 'Сессия отозвана',
+    onlyAdminsRevoke: 'Только администраторы могут отзывать сессии',
+    allSessionsRevoked: 'Все сессии отозваны', revokeAllSessions: 'Отозвать все сессии',
+    signOutAllDevices: 'Выйти со всех устройств',
+    signOutAllInfo: 'Чтобы выйти со всех устройств, измените пароль. Перейдите в Профиль → Изменить пароль.',
+    sessionsInfo: 'Показаны ваши активные входы. Чтобы выйти со всех устройств, измените пароль — это автоматически завершит все сессии.',
+    activeSessions: 'активных сессий',
+    revokeAllConfirm: 'Все активные сессии будут завершены. Вам нужно будет войти снова.',
+    gotIt: 'Понятно', expiringSoon: 'Скоро истечёт',
   },
   security: {
     events: 'События безопасности', loginSuccess: 'Успешный вход', loginFailure: 'Неудачный вход',
@@ -484,6 +646,15 @@ const ru: Translations = {
     roleChange: 'Изменение роли', rateLimitTriggered: 'Лимит запросов', suspiciousRequest: 'Подозрительный',
     accessDenied: 'Отказ в доступе', bruteForceDetected: 'Атака перебором', sessionRevoked: 'Сессия отозвана',
     last24h: 'За 24ч', last7d: 'За 7 дней', last30d: 'За 30 дней', days: 'дн.',
+  },
+  notFound: {
+    title: 'Страница не найдена',
+    description: 'Страница, которую вы ищете, не существует или была перемещена.',
+    goBack: 'Назад', goHome: 'На главную',
+  },
+  app: {
+    fullName: 'Обеспечение и анализ кибербезопасности платформ онлайн-обучения',
+    version: 'v1.0 • Безопасная LMS',
   },
   settings: {
     language: 'Язык', theme: 'Тема', darkTheme: 'Тёмная', lightTheme: 'Светлая',
@@ -513,6 +684,13 @@ const tk: Translations = {
     passwordMin: 'Açar söz azyndan 8 simwol bolmaly',
     passwordMatch: 'Açar sözler gabat gelmeýär', loggedOut: 'Üstünlikli çykyldy',
     welcomeMsg: 'Hoş geldiňiz,', accountCreated: 'Hasap döredildi! Giriş ediň.',
+    required: 'Zerur', mustContainUppercase: 'Baş harp bolmaly',
+    mustContainNumber: 'San bolmaly', firstNamePlaceholder: 'Merdan',
+    lastNamePlaceholder: 'Gapurow', passwordHint: 'Iň az 8 simwol, baş harp, san',
+    repeatPassword: 'Açar sözi gaýtala', checkEmail: 'Email-yňyzy barlaň',
+    resetLinkSent: 'Hasap bar bolsa, täzeleme baglanyşygy iberildi.',
+    useToken: 'Tokeni ulan →', backToLogin: '← Girişe gaýdyp git',
+    passwordResetDone: 'Açar söz täzelendi! Ugradylýar…', secureLms: 'Howpsuz LMS',
   },
   common: {
     save: 'Ýatda sakla', cancel: 'Ýatyr', delete: 'Poz', edit: 'Üýtget', create: 'Döret',
@@ -524,6 +702,7 @@ const tk: Translations = {
     enrolled: 'Ýazyldy', draft: 'Taslamak', live: 'Işjeň', active: 'Işjeň',
     blocked: 'Bloklanan', verified: 'Tassyklanan', all: 'Hemme', students: 'talyp',
     lessons: 'sapak', categories: 'Kategoriýalar', close: 'Ýap', skipForNow: 'Geçir',
+    change: 'Üýtget', student: 'Talyp', teacher: 'Mugallym', admin: 'Admin',
   },
   dashboard: {
     welcomeBack: 'Hoş geldiňiz,', continueJourney: 'Öwreniş syýahatyňyzy dowam ediň',
@@ -556,6 +735,12 @@ const tk: Translations = {
     myCourseTitle: 'Meniň kurslarym', myCourseDesc: 'ýazyldy',
     notEnrolledTitle: 'Siz hiç bir kursa ýazylmadyňyz',
     notEnrolledDesc: 'Elýeterli kurslara göz aýlaň we öwrenmäge başlaň',
+    courseNotFound: 'Kurs tapylmady', noLessonsYet: 'Heniz sapak ýok',
+    enrollToAccess: 'Sapaklara girmek üçin ýazylyň',
+    manageCourseContent: 'Kurs mazmunyny dolandyryň',
+    courseCreated: 'Kurs döredildi!', updated: 'Täzelendi!',
+    lessonAdded: 'Sapak goşuldy!', quizCreated: 'Test soraglar bilen döredildi!',
+    courseDeletedMsg: 'Kurs pozuldy',
   },
   quiz: {
     title: 'Test', pass: 'GEÇDI', fail: 'GEÇMEDI', yourScore: 'Siziň balyňyz',
@@ -565,6 +750,8 @@ const tk: Translations = {
     backToLesson: 'Sapaga gaýdyp git', viewResults: 'Ähli netijeleri gör',
     submitQuiz: 'Testi ugrat', answered: 'jogap berildi', timeLeft: 'Galdy',
     takeQuiz: 'Testi geç', required_pct: 'Gerek',
+    quizNotFound: 'Test tapylmady', quizReview: 'Test syny',
+    totalAttempts: 'Jemi synanyşyk', failed: 'Başarylmady', score: 'Bal',
   },
   admin: {
     users: 'Ulanyjylar', allUsers: 'Ähli ulanyjylar', blockUser: 'Blokla',
@@ -579,6 +766,17 @@ const tk: Translations = {
     blockingStats: 'Bloklama statistikasy', manageSessions: 'Sessiýalary dolandyr',
     revokeSession: 'Boz', revokeAll: 'Hemmesini boz', lastSeen: 'Soňky giriş',
     activeSessions: 'Işjeň sessiýalar',
+    userBlocked: 'Ulanyjy bloklanan', userUnblocked: 'Ulanyjy blokdan çykarylan',
+    userDeleted: 'Ulanyjy pozuldy', roleChanged: 'Rol üýtgedildi',
+    courseDeleted: 'Kurs pozuldy', sessionRevoked: 'Sessiýa bozuldy',
+    allSessionsRevoked: 'Ähli sessiýalar bozuldy', filterByIp: 'IP boýunça süz...',
+    securityAnalytics: 'Howpsuzlyk analitikasy we platforma syn',
+    deleteCourse: 'Kursy poz',
+    deleteCourseMsg: 'Bu kursy we ähli mazmunyny baky pozmak?',
+    teacherCol: 'Mugallym', statsCol: 'Statistika',
+    accountsBlocked30d: 'Bloklanan (30g)', bruteForce30d: 'Güýç hüjümi (30g)',
+    rateLimited30d: 'Çäklendirilen (30g)', failedLoginsLabel: 'Başarylmadyk girişler',
+    failures: 'Şowsuzlyk',
   },
   profile: {
     title: 'Profil', editProfile: 'Redaktirle', changePassword: 'Açar sözi üýtget',
@@ -587,6 +785,17 @@ const tk: Translations = {
     accountInfo: 'Hasap maglumatlary', memberSince: 'Agza boldy', emailVerified: 'Email tassyklanan',
     notVerified: 'Tassyklanmadyk', mySessionsTitle: 'Meniň sessiýalarym', current: 'Häzirki',
     revoke: 'Boz',
+    profileUpdated: 'Profil täzelendi!', passwordChanged: 'Açar söz üýtgedildi!',
+    keepSecure: 'Hasabyňyzy goraň', minChars: 'Iň az 8 simwol',
+    noActiveSessions: 'Işjeň sessiýa tapylmady', sessionRevoked: 'Sessiýa bozuldy',
+    onlyAdminsRevoke: 'Diňe adminler sessiýalary bozup bilýär',
+    allSessionsRevoked: 'Ähli sessiýalar bozuldy', revokeAllSessions: 'Ähli sessiýalary boz',
+    signOutAllDevices: 'Ähli enjamlardan çyk',
+    signOutAllInfo: 'Ähli enjamlardan çykmak üçin açar sözi üýtgediň. Profil → Açar sözi üýtget.',
+    sessionsInfo: 'Bu siziň işjeň girişleriňiz. Ähli enjamlardan çykmak üçin açar sözi üýtgediň — bu ähli sessiýalary awtomatik bozar.',
+    activeSessions: 'işjeň sessiýa',
+    revokeAllConfirm: 'Ähli işjeň sessiýalar bozular. Täzeden giriş etmeli bolarsyňyz.',
+    gotIt: 'Düşnükli', expiringSoon: 'Ýakynda gutarýar',
   },
   security: {
     events: 'Howpsuzlyk wakalary', loginSuccess: 'Üstünlikli giriş', loginFailure: 'Başarylmadyk giriş',
@@ -596,6 +805,15 @@ const tk: Translations = {
     roleChange: 'Rol üýtgetme', rateLimitTriggered: 'Sorag çägi', suspiciousRequest: 'Şübheli',
     accessDenied: 'Giriş gadagan', bruteForceDetected: 'Güýç hüjümi', sessionRevoked: 'Sessiýa bozuldy',
     last24h: 'Soňky 24s', last7d: 'Soňky 7 gün', last30d: 'Soňky 30 gün', days: 'gün',
+  },
+  notFound: {
+    title: 'Sahypa tapylmady',
+    description: 'Gözleýän sahypaňyz ýok ýa-da göçürildi.',
+    goBack: 'Yza', goHome: 'Baş sahypa',
+  },
+  app: {
+    fullName: 'Onlaýn okuw platformalarynyň kiberhowpsuzlygyny üpjün etmek we seljermek',
+    version: 'v1.0 • Howpsuz LMS',
   },
   settings: {
     language: 'Dil', theme: 'Tema', darkTheme: 'Garaňky', lightTheme: 'Ýagty',

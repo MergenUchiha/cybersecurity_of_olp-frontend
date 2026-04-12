@@ -263,7 +263,7 @@ export function AdminDashboardPage() {
                             <Area
                                 type="monotone"
                                 dataKey="count"
-                                name="Failed logins"
+                                name={t.admin.failedLoginsLabel}
                                 stroke="#f43f5e"
                                 fill="url(#failGrad)"
                                 strokeWidth={2}
@@ -393,21 +393,21 @@ export function AdminUsersPage() {
     const blockMutation = useMutation({
         mutationFn: usersApi.block,
         onSuccess: () => {
-            toast.success("User blocked");
+            toast.success(t.admin.userBlocked);
             qc.invalidateQueries({ queryKey: ["admin-users"] });
         },
     });
     const unblockMutation = useMutation({
         mutationFn: usersApi.unblock,
         onSuccess: () => {
-            toast.success("User unblocked");
+            toast.success(t.admin.userUnblocked);
             qc.invalidateQueries({ queryKey: ["admin-users"] });
         },
     });
     const deleteMutation = useMutation({
         mutationFn: usersApi.delete,
         onSuccess: () => {
-            toast.success("User deleted");
+            toast.success(t.admin.userDeleted);
             qc.invalidateQueries({ queryKey: ["admin-users"] });
         },
     });
@@ -415,7 +415,7 @@ export function AdminUsersPage() {
         mutationFn: ({ id, role }: { id: string; role: string }) =>
             usersApi.changeRole(id, role),
         onSuccess: () => {
-            toast.success("Role changed");
+            toast.success(t.admin.roleChanged);
             qc.invalidateQueries({ queryKey: ["admin-users"] });
             setRoleModal(null);
         },
@@ -628,9 +628,9 @@ export function AdminUsersPage() {
                     }}
                 >
                     <option value="">{t.common.all} Roles</option>
-                    <option value="STUDENT">Student</option>
-                    <option value="TEACHER">Teacher</option>
-                    <option value="ADMIN">Admin</option>
+                    <option value="STUDENT">{t.common.student}</option>
+                    <option value="TEACHER">{t.common.teacher}</option>
+                    <option value="ADMIN">{t.common.admin}</option>
                 </select>
                 <Button
                     variant="outline"
@@ -774,7 +774,7 @@ export function AdminCoursesPage() {
     const deleteMutation = useMutation({
         mutationFn: coursesApi.delete,
         onSuccess: () => {
-            toast.success("Course deleted");
+            toast.success(t.admin.courseDeleted);
             qc.invalidateQueries({ queryKey: ["all-courses"] });
         },
     });
@@ -795,7 +795,7 @@ export function AdminCoursesPage() {
         },
         {
             key: "teacher",
-            header: "Teacher",
+            header: t.admin.teacherCol,
             render: (c: Course) => (
                 <span
                     style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}
@@ -806,7 +806,7 @@ export function AdminCoursesPage() {
         },
         {
             key: "stats",
-            header: "Stats",
+            header: t.admin.statsCol,
             render: (c: Course) => (
                 <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
                     <span>{c._count?.lessons || 0} lessons</span>
@@ -820,7 +820,7 @@ export function AdminCoursesPage() {
             header: t.common.status,
             render: (c: Course) => (
                 <Badge variant={c.isPublished ? "success" : "neutral"} dot>
-                    {c.isPublished ? "Published" : "Draft"}
+                    {c.isPublished ? t.dashboard.published : t.common.draft}
                 </Badge>
             ),
         },
@@ -834,7 +834,7 @@ export function AdminCoursesPage() {
                         variant={c.isPublished ? "ghost" : "outline"}
                         onClick={() => toggleMutation.mutate(c.id)}
                     >
-                        {c.isPublished ? "Unpublish" : "Publish"}
+                        {c.isPublished ? t.common.unpublish : t.common.publish}
                     </Button>
                     <Button
                         size="sm"
@@ -899,8 +899,8 @@ export function AdminCoursesPage() {
                     deleteMutation.mutate(deleteId!);
                     setDeleteId(null);
                 }}
-                title="Delete Course"
-                message="Permanently delete this course and all its content?"
+                title={t.admin.deleteCourse}
+                message={t.admin.deleteCourseMsg}
                 confirmLabel="Delete"
                 danger
             />
@@ -1086,7 +1086,7 @@ export function SecurityEventsPage() {
                         ))}
                     </select>
                     <Input
-                        placeholder="Filter by IP..."
+                        placeholder={t.admin.filterByIp}
                         value={ipInput}
                         onChange={(e) => setIpInput(e.target.value)}
                         onKeyDown={(e) => {
@@ -1179,14 +1179,14 @@ export function AdminSessionsPage() {
     const revokeMutation = useMutation({
         mutationFn: sessionsApi.revoke,
         onSuccess: () => {
-            toast.success("Session revoked");
+            toast.success(t.admin.sessionRevoked);
             qc.invalidateQueries({ queryKey: ["admin-sessions"] });
         },
     });
     const revokeAllMutation = useMutation({
         mutationFn: sessionsApi.revokeAllUser,
         onSuccess: () => {
-            toast.success("All sessions revoked");
+            toast.success(t.admin.allSessionsRevoked);
             qc.invalidateQueries({ queryKey: ["admin-sessions"] });
         },
     });
@@ -1544,7 +1544,7 @@ export function AnalyticsPage() {
         <div style={{ animation: "fadeInUp 0.4s ease" }}>
             <SectionHeader
                 title={t.admin.analytics}
-                subtitle="Security analytics & platform insights"
+                subtitle={t.admin.securityAnalytics}
             />
 
             <div
@@ -1556,20 +1556,20 @@ export function AnalyticsPage() {
                 }}
             >
                 <StatCard
-                    label="Accounts Blocked (30d)"
+                    label={t.admin.accountsBlocked30d}
                     value={blockingStats?.blocked || 0}
                     icon={<Ban size={20} />}
                     color="danger"
                 />
                 <StatCard
-                    label="Brute Force (30d)"
+                    label={t.admin.bruteForce30d}
                     value={blockingStats?.bruteForce || 0}
                     icon={<AlertTriangle size={20} />}
                     color="warning"
                     delay={0.05}
                 />
                 <StatCard
-                    label="Rate Limited (30d)"
+                    label={t.admin.rateLimited30d}
                     value={blockingStats?.rateLimited || 0}
                     icon={<Shield size={20} />}
                     color="info"
@@ -1669,7 +1669,7 @@ export function AnalyticsPage() {
                             <Area
                                 type="monotone"
                                 dataKey="count"
-                                name="Failures"
+                                name={t.admin.failures}
                                 stroke="#f43f5e"
                                 fill="url(#g1)"
                                 strokeWidth={2}
