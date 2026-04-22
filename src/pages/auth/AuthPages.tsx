@@ -160,7 +160,7 @@ export function RegisterPage() {
 
       <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-xl)', padding: '32px', boxShadow: 'var(--shadow-lg)' }}>
         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div className="grid-responsive" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             <Input label={t.auth.firstName} placeholder={t.auth.firstNamePlaceholder} leftIcon={<User size={16} />}
               error={errors.firstName?.message as string} {...register('firstName')} />
             <Input label={t.auth.lastName} placeholder={t.auth.lastNamePlaceholder}

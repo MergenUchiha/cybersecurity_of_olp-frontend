@@ -9,11 +9,11 @@ export function AppLayout() {
   const { user } = useAuthStore();
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-base)' }}>
-      <div style={{ width: 'var(--sidebar-width)', flexShrink: 0 }}><Sidebar /></div>
+      <div className="sidebar-wrapper"><Sidebar /></div>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-        <header style={{ height: 'var(--header-height)', background: 'var(--bg-surface)', backdropFilter: 'blur(12px)', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', position: 'sticky', top: 0, zIndex: 50, flexShrink: 0 }}>
+        <header className="app-header" style={{ height: 'var(--header-height)', background: 'var(--bg-surface)', backdropFilter: 'blur(12px)', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', position: 'sticky', top: 0, zIndex: 50, flexShrink: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><MobileNav /></div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <HeaderThemeLanguage />
             <Badge variant={user?.role === 'ADMIN' ? 'danger' : user?.role === 'TEACHER' ? 'warning' : 'primary'} dot>{user?.role}</Badge>
             <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(135deg, var(--primary-dim), var(--accent-dim))', border: '1px solid var(--border-strong)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.8rem', color: 'var(--primary)', cursor: 'pointer' }}>

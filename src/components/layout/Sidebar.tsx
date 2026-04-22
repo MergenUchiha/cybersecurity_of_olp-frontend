@@ -77,7 +77,7 @@ export function Sidebar({ mobile, onClose }: SidebarProps) {
 
   return (
     <aside style={{
-      width: 'var(--sidebar-width)', height: '100vh',
+      width: mobile ? 'min(300px, 85vw)' : 'var(--sidebar-width)', height: '100vh',
       background: 'var(--bg-surface)', borderRight: '1px solid var(--border)',
       display: 'flex', flexDirection: 'column',
       position: 'fixed', top: 0, left: 0,
@@ -181,7 +181,7 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setOpen(true)} style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: '8px', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center' }}>
+      <button className="mobile-nav-btn" onClick={() => setOpen(true)} style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: '8px', cursor: 'pointer', color: 'var(--text-secondary)', alignItems: 'center' }}>
         <Menu size={20} />
       </button>
       {open && (

@@ -460,20 +460,41 @@ select option {
 
 /* ─── MOBILE RESPONSIVENESS ──────────────────────────── */
 
-/* Tablets (≤900px) — hide sidebar, use mobile nav */
+/* Desktop: hide mobile hamburger button */
+.mobile-nav-btn {
+    display: none !important;
+}
+
+/* Desktop: show sidebar wrapper */
+.sidebar-wrapper {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+}
+
+/* Tablets & smaller (≤900px) — hide sidebar, show mobile nav */
 @media (max-width: 900px) {
     :root {
         --sidebar-width: 0px;
         --header-height: 58px;
     }
 
+    /* Show mobile hamburger */
+    .mobile-nav-btn {
+        display: flex !important;
+    }
+
+    /* Hide sidebar wrapper */
+    .sidebar-wrapper {
+        display: none;
+    }
+
     main {
         padding: 16px !important;
     }
 
-    /* Hide fixed sidebar — MobileNav opens it as overlay */
-    div[style*="width: var(--sidebar-width)"] > aside {
-        display: none;
+    /* Header compact padding */
+    .app-header {
+        padding: 0 14px !important;
     }
 
     h1 {
@@ -483,88 +504,99 @@ select option {
         font-size: 1.375rem;
     }
 
-    /* Stats grids — 2 columns on tablet */
-    .stats-grid {
+    /* All grids: stack to 1 or 2 columns */
+    .grid-responsive {
         grid-template-columns: 1fr 1fr !important;
+    }
+
+    .grid-responsive-single {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Tables: force horizontal scroll */
+    table {
+        min-width: 600px;
+    }
+
+    /* Filter row: stack */
+    .filter-row {
+        flex-direction: column !important;
     }
 }
 
-/* Phones (≤640px) — single column everywhere */
+/* Phones (≤640px) — compact everything */
 @media (max-width: 640px) {
     :root {
         --header-height: 54px;
     }
 
     main {
-        padding: 12px !important;
+        padding: 10px !important;
+    }
+
+    .app-header {
+        padding: 0 10px !important;
     }
 
     h1 {
-        font-size: 1.375rem !important;
+        font-size: 1.25rem !important;
     }
     h2 {
-        font-size: 1.125rem !important;
+        font-size: 1.1rem !important;
     }
     h3 {
-        font-size: 1rem !important;
+        font-size: 0.95rem !important;
     }
 
-    /* Single-column grids on phone */
-    div[style*="gridTemplateColumns: '1fr 1fr'"],
-    div[style*="grid-template-columns: 1fr 1fr"] {
+    /* All grids: single column on phones */
+    .grid-responsive {
         grid-template-columns: 1fr !important;
     }
 
-    div[style*="gridTemplateColumns: '2fr 1fr'"],
-    div[style*="grid-template-columns: '2fr 1fr'"] {
-        grid-template-columns: 1fr !important;
-    }
-
-    div[style*="gridTemplateColumns: 'repeat(3"] {
+    /* Stat cards: 2 per row still */
+    .grid-stats {
         grid-template-columns: 1fr 1fr !important;
     }
 
-    /* Stat cards: 2 per row on phone */
-    div[style*="minmax(160px"] {
-        grid-template-columns: 1fr 1fr !important;
-    }
-
-    /* Course grid: 1 per row on phone */
-    div[style*="minmax(280px"] {
-        grid-template-columns: 1fr !important;
-    }
-
-    div[style*="minmax(260px"] {
-        grid-template-columns: 1fr !important;
-    }
-
-    div[style*="minmax(300px"] {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* Table horizontal scroll on small screens */
-    div[style*="overflowX: 'auto'"] {
-        overflow-x: auto;
-    }
-
-    /* Lesson modal sidebar — hide on phone, show toggle */
+    /* Lesson modal sidebar — hide on phone */
     .lesson-modal-sidebar {
         display: none !important;
     }
+
+    /* Pagination compact */
+    .pagination-wrapper {
+        gap: 4px !important;
+    }
+    .pagination-wrapper button {
+        padding: 4px 8px !important;
+        min-width: 28px !important;
+        font-size: 0.8rem !important;
+    }
 }
 
-/* Admin charts: stack on small screens */
-@media (max-width: 768px) {
-    div[style*="minmax(0,2fr)"] {
+/* Very small phones (≤400px) */
+@media (max-width: 400px) {
+    .grid-stats {
         grid-template-columns: 1fr !important;
     }
 }
 
-/* ─── Smooth lesson modal on mobile ─────────────────── */
-@media (max-width: 768px) {
-    /* Lesson modal sidebar collapses */
-    .lesson-sidebar {
-        width: 0 !important;
-        overflow: hidden !important;
+/* ─── Mobile-friendly tables ────────────────────────── */
+@media (max-width: 900px) {
+    /* Wrap action buttons in table cells */
+    td div[style*="display: flex"][style*="gap"] {
+        flex-wrap: wrap;
+    }
+
+    /* Recharts containers need min-height on mobile */
+    .recharts-responsive-container {
+        min-height: 180px;
+    }
+}
+
+/* ─── Sidebar mobile overlay: full width on small phones ── */
+@media (max-width: 480px) {
+    aside[style*="var(--sidebar-width)"] {
+        width: 85vw !important;
     }
 }

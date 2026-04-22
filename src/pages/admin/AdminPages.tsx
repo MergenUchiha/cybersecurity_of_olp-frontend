@@ -146,6 +146,7 @@ export function AdminDashboardPage() {
 
             {/* Overview stats — ✅ FIXED: second card was showing "Total Users" instead of "Total Courses" */}
             <div
+                className="grid-stats"
                 style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
@@ -198,6 +199,7 @@ export function AdminDashboardPage() {
             </div>
 
             <div
+                className="grid-responsive"
                 style={{
                     display: "grid",
                     gridTemplateColumns: "minmax(0,2fr) minmax(0,1fr)",
@@ -1057,6 +1059,7 @@ export function SecurityEventsPage() {
                 }}
             >
                 <div
+                    className="grid-responsive"
                     style={{
                         display: "grid",
                         gridTemplateColumns:
@@ -1566,6 +1569,7 @@ export function AnalyticsPage() {
             />
 
             <div
+                className="grid-stats"
                 style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
@@ -1624,6 +1628,7 @@ export function AnalyticsPage() {
             </div>
 
             <div
+                className="grid-responsive"
                 style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
@@ -1758,6 +1763,7 @@ export function AnalyticsPage() {
             </div>
 
             <div
+                className="grid-responsive"
                 style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",

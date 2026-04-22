@@ -63,7 +63,7 @@ export function ProfilePage() {
         {editMode && (
           <div style={{ borderTop: '1px solid var(--border)', paddingTop: '24px' }}>
             <form onSubmit={submitProfile(d => updateMutation.mutate(d))} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="grid-responsive" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <Input label={t.auth.firstName} {...regProfile('firstName', { required: true })} />
                 <Input label={t.auth.lastName} {...regProfile('lastName', { required: true })} />
               </div>
@@ -76,7 +76,7 @@ export function ProfilePage() {
         )}
 
         <div style={{ borderTop: '1px solid var(--border)', paddingTop: '20px', marginTop: editMode ? '16px' : '0' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+          <div className="grid-responsive" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             {[
               { label: t.common.email, value: user?.email },
               { label: t.common.role, value: user?.role },

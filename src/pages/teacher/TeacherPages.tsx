@@ -73,6 +73,7 @@ export function TeacherDashboardPage() {
             </div>
 
             <div
+                className="grid-stats"
                 style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
@@ -125,6 +126,7 @@ export function TeacherDashboardPage() {
                 <PageLoader />
             ) : (
                 <div
+                    className="grid-responsive"
                     style={{
                         display: "grid",
                         gridTemplateColumns:
@@ -1141,6 +1143,7 @@ function AddQuizModal({
                         {...register("description")}
                     />
                     <div
+                        className="grid-responsive"
                         style={{
                             display: "grid",
                             gridTemplateColumns: "1fr 1fr",

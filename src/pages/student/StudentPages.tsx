@@ -79,6 +79,7 @@ export function StudentDashboardPage() {
                 <SkeletonStats count={4} />
             ) : (
                 <div
+                    className="grid-stats"
                     style={{
                         display: "grid",
                         gridTemplateColumns:
@@ -125,6 +126,7 @@ export function StudentDashboardPage() {
             )}
 
             <div
+                className="grid-responsive"
                 style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -382,6 +384,7 @@ export function CoursesPage() {
                 subtitle={`${data?.meta.total || 0} ${t.courses.available}`}
             />
             <div
+                className="filter-row"
                 style={{
                     display: "flex",
                     gap: "12px",
@@ -441,6 +444,7 @@ export function CoursesPage() {
             ) : (
                 <>
                     <div
+                        className="grid-responsive"
                         style={{
                             display: "grid",
                             gridTemplateColumns:
@@ -1807,6 +1811,7 @@ export function MyCoursesPage() {
                 />
             ) : (
                 <div
+                    className="grid-responsive"
                     style={{
                         display: "grid",
                         gridTemplateColumns:
@@ -1937,6 +1942,7 @@ export function MyResultsPage() {
                 subtitle={`${attempts?.length || 0} ${t.quiz.totalAttempts}`}
             />
             <div
+                className="grid-stats"
                 style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
