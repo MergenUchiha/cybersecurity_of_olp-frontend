@@ -140,7 +140,7 @@ export function AdminDashboardPage() {
                     {t.dashboard.systemOverview}
                 </h1>
                 <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>
-                    Real-time security monitoring & platform management
+                    {t.admin.realtimeDesc}
                 </p>
             </div>
 
@@ -344,23 +344,25 @@ function SecurityEventBadge({
     type: string;
     small?: boolean;
 }) {
+    const { t } = useUIStore();
     const config: Record<string, { variant: any; label: string }> = {
-        LOGIN_SUCCESS: { variant: "success", label: "Login OK" },
-        LOGIN_FAILURE: { variant: "danger", label: "Login Fail" },
-        LOGOUT: { variant: "neutral", label: "Logout" },
-        BRUTE_FORCE_DETECTED: { variant: "danger", label: "Brute Force" },
-        ACCOUNT_BLOCKED: { variant: "danger", label: "Blocked" },
-        SUSPICIOUS_REQUEST: { variant: "warning", label: "Suspicious" },
-        RATE_LIMIT_TRIGGERED: { variant: "warning", label: "Rate Limit" },
-        ACCESS_DENIED: { variant: "warning", label: "Denied" },
-        PASSWORD_CHANGE: { variant: "info", label: "Pwd Change" },
-        REFRESH_TOKEN: { variant: "neutral", label: "Token" },
-        SESSION_REVOKED: { variant: "warning", label: "Session" },
+        LOGIN_SUCCESS: { variant: "success", label: t.security.loginSuccess },
+        LOGIN_FAILURE: { variant: "danger", label: t.security.loginFailure },
+        LOGOUT: { variant: "neutral", label: t.security.logout },
+        BRUTE_FORCE_DETECTED: { variant: "danger", label: t.security.bruteForceDetected },
+        ACCOUNT_BLOCKED: { variant: "danger", label: t.security.accountBlocked },
+        ACCOUNT_UNBLOCKED: { variant: "info", label: t.security.accountUnblocked },
+        SUSPICIOUS_REQUEST: { variant: "warning", label: t.security.suspiciousRequest },
+        RATE_LIMIT_TRIGGERED: { variant: "warning", label: t.security.rateLimitTriggered },
+        ACCESS_DENIED: { variant: "warning", label: t.security.accessDenied },
+        PASSWORD_CHANGE: { variant: "info", label: t.security.passwordChange },
+        REFRESH_TOKEN: { variant: "neutral", label: t.security.refreshToken },
+        SESSION_REVOKED: { variant: "warning", label: t.security.sessionRevoked },
     };
     const c = config[type] || { variant: "neutral", label: type };
     return (
         <Badge variant={c.variant}>
-            {small ? c.label : type.replace(/_/g, " ")}
+            {small ? c.label : c.label}
         </Badge>
     );
 }
@@ -504,13 +506,13 @@ export function AdminUsersPage() {
                 <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
                     {u.isBlocked && (
                         <Badge variant="danger" dot>
-                            Blocked
+                            {t.common.blocked}
                         </Badge>
                     )}
-                    {!u.isActive && <Badge variant="neutral">Inactive</Badge>}
+                    {!u.isActive && <Badge variant="neutral">{t.common.inactive}</Badge>}
                     {!u.isBlocked && u.isActive && (
                         <Badge variant="success" dot>
-                            Active
+                            {t.common.active}
                         </Badge>
                     )}
                     {u.emailVerified && <Badge variant="info">✓</Badge>}
@@ -586,7 +588,7 @@ export function AdminUsersPage() {
         <div style={{ animation: "fadeInUp 0.4s ease" }}>
             <SectionHeader
                 title={t.admin.allUsers}
-                subtitle={`${data?.meta.total || 0} users`}
+                subtitle={`${data?.meta.total || 0} ${t.admin.users.toLowerCase()}`}
             />
 
             <div
@@ -599,7 +601,7 @@ export function AdminUsersPage() {
             >
                 <div style={{ flex: 1, minWidth: "180px" }}>
                     <Input
-                        placeholder={`${t.common.search} users...`}
+                        placeholder={`${t.common.search} ${t.admin.users.toLowerCase()}...`}
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
                         onKeyDown={(e) => {
@@ -627,7 +629,7 @@ export function AdminUsersPage() {
                         fontFamily: "var(--font-body)",
                     }}
                 >
-                    <option value="">{t.common.all} Roles</option>
+                    <option value="">{t.admin.allRoles}</option>
                     <option value="STUDENT">{t.common.student}</option>
                     <option value="TEACHER">{t.common.teacher}</option>
                     <option value="ADMIN">{t.common.admin}</option>
@@ -677,7 +679,7 @@ export function AdminUsersPage() {
                                 color: "var(--text-secondary)",
                             }}
                         >
-                            Change role for{" "}
+                            {t.admin.changeRoleFor}{" "}
                             <strong>
                                 {roleModal.firstName} {roleModal.lastName}
                             </strong>
@@ -741,11 +743,11 @@ export function AdminUsersPage() {
                 }
                 message={
                     confirmAction?.type === "block"
-                        ? `Block ${confirmAction?.user.email}?`
-                        : `Permanently delete ${confirmAction?.user.email}?`
+                        ? `${t.admin.blockUser} ${confirmAction?.user.email}?`
+                        : `${t.admin.deleteUser} ${confirmAction?.user.email}?`
                 }
                 confirmLabel={
-                    confirmAction?.type === "block" ? "Block" : "Delete"
+                    confirmAction?.type === "block" ? t.admin.block : t.common.delete
                 }
                 danger
             />
@@ -809,9 +811,9 @@ export function AdminCoursesPage() {
             header: t.admin.statsCol,
             render: (c: Course) => (
                 <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
-                    <span>{c._count?.lessons || 0} lessons</span>
+                    <span>{c._count?.lessons || 0} {t.common.lessons}</span>
                     <span style={{ margin: "0 6px" }}>•</span>
-                    <span>{c._count?.enrollments || 0} students</span>
+                    <span>{c._count?.enrollments || 0} {t.common.students}</span>
                 </div>
             ),
         },
@@ -852,12 +854,12 @@ export function AdminCoursesPage() {
         <div style={{ animation: "fadeInUp 0.4s ease" }}>
             <SectionHeader
                 title={`${t.common.all} ${t.nav.courses}`}
-                subtitle={`${data?.meta.total || 0} total`}
+                subtitle={`${data?.meta.total || 0} ${t.common.total.toLowerCase()}`}
             />
             <div style={{ display: "flex", gap: "12px", marginBottom: "20px" }}>
                 <div style={{ flex: 1 }}>
                     <Input
-                        placeholder={`${t.common.search} courses...`}
+                        placeholder={`${t.common.search} ${t.nav.courses.toLowerCase()}...`}
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
                         onKeyDown={(e) => {
@@ -901,7 +903,7 @@ export function AdminCoursesPage() {
                 }}
                 title={t.admin.deleteCourse}
                 message={t.admin.deleteCourseMsg}
-                confirmLabel="Delete"
+                confirmLabel={t.common.delete}
                 danger
             />
         </div>
@@ -963,7 +965,7 @@ export function SecurityEventsPage() {
         },
         {
             key: "user",
-            header: "User",
+            header: t.common.user,
             render: (e: SecurityEvent) =>
                 e.user ? (
                     <p
@@ -1017,7 +1019,7 @@ export function SecurityEventsPage() {
         },
         {
             key: "details",
-            header: "Details",
+            header: t.common.details,
             render: (e: SecurityEvent) =>
                 e.details ? (
                     <span
@@ -1042,7 +1044,7 @@ export function SecurityEventsPage() {
         <div style={{ animation: "fadeInUp 0.4s ease" }}>
             <SectionHeader
                 title={t.admin.securityEvents}
-                subtitle={`${data?.meta.total || 0} total events`}
+                subtitle={`${data?.meta.total || 0} ${t.common.totalEvents}`}
             />
 
             <div
@@ -1078,12 +1080,28 @@ export function SecurityEventsPage() {
                             fontFamily: "var(--font-body)",
                         }}
                     >
-                        <option value="">All Event Types</option>
-                        {eventTypes.map((et) => (
-                            <option key={et} value={et}>
-                                {et.replace(/_/g, " ")}
-                            </option>
-                        ))}
+                        <option value="">{t.admin.allEventTypes}</option>
+                        {eventTypes.map((et) => {
+                            const eventLabels: Record<string, string> = {
+                                LOGIN_SUCCESS: t.security.loginSuccess,
+                                LOGIN_FAILURE: t.security.loginFailure,
+                                LOGOUT: t.security.logout,
+                                REFRESH_TOKEN: t.security.refreshToken,
+                                PASSWORD_CHANGE: t.security.passwordChange,
+                                ACCOUNT_BLOCKED: t.security.accountBlocked,
+                                ACCOUNT_UNBLOCKED: t.security.accountUnblocked,
+                                BRUTE_FORCE_DETECTED: t.security.bruteForceDetected,
+                                RATE_LIMIT_TRIGGERED: t.security.rateLimitTriggered,
+                                SUSPICIOUS_REQUEST: t.security.suspiciousRequest,
+                                ACCESS_DENIED: t.security.accessDenied,
+                                SESSION_REVOKED: t.security.sessionRevoked,
+                            };
+                            return (
+                                <option key={et} value={et}>
+                                    {eventLabels[et] || et.replace(/_/g, " ")}
+                                </option>
+                            );
+                        })}
                     </select>
                     <Input
                         placeholder={t.admin.filterByIp}
@@ -1138,7 +1156,7 @@ export function SecurityEventsPage() {
                             setPage(1);
                         }}
                     >
-                        Clear
+                        {t.common.clear}
                     </Button>
                 </div>
             </div>
@@ -1194,7 +1212,7 @@ export function AdminSessionsPage() {
     const columns = [
         {
             key: "user",
-            header: "User",
+            header: t.common.user,
             render: (s: Session) => (
                 <div>
                     <p style={{ fontWeight: 500, fontSize: "0.875rem" }}>
@@ -1266,7 +1284,7 @@ export function AdminSessionsPage() {
         },
         {
             key: "expires",
-            header: "Expires",
+            header: t.common.expires,
             render: (s: Session) => (
                 <span
                     style={{
@@ -1310,7 +1328,7 @@ export function AdminSessionsPage() {
         <div style={{ animation: "fadeInUp 0.4s ease" }}>
             <SectionHeader
                 title={t.admin.activeSessions}
-                subtitle={`${data?.meta.total || 0} active`}
+                subtitle={`${data?.meta.total || 0} ${t.common.active.toLowerCase()}`}
             />
             <div
                 style={{
@@ -1379,7 +1397,7 @@ export function AuditLogsPage() {
         },
         {
             key: "user",
-            header: "User",
+            header: t.common.user,
             render: (l: AuditLog) =>
                 l.user ? (
                     <span
@@ -1453,7 +1471,7 @@ export function AuditLogsPage() {
         <div style={{ animation: "fadeInUp 0.4s ease" }}>
             <SectionHeader
                 title={t.admin.auditLogs}
-                subtitle={`${data?.meta.total || 0} records`}
+                subtitle={`${data?.meta.total || 0} ${t.common.records}`}
             />
             <div style={{ marginBottom: "16px" }}>
                 <select
@@ -1472,7 +1490,7 @@ export function AuditLogsPage() {
                         fontFamily: "var(--font-body)",
                     }}
                 >
-                    <option value="">All Actions</option>
+                    <option value="">{t.admin.allActions}</option>
                     {[
                         "CREATE",
                         "UPDATE",
@@ -1845,7 +1863,7 @@ export function AnalyticsPage() {
                     }}
                 >
                     <h3 style={{ marginBottom: "16px", fontSize: "1rem" }}>
-                        Events by Role (30d)
+                        {t.admin.eventsByRole} (30d)
                     </h3>
                     <ResponsiveContainer width="100%" height={180}>
                         <BarChart data={eventsByRole || []}>

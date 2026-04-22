@@ -110,6 +110,13 @@ export interface Translations {
     student: string;
     teacher: string;
     admin: string;
+    clear: string;
+    user: string;
+    details: string;
+    expires: string;
+    records: string;
+    totalEvents: string;
+    inactive: string;
   };
   // Dashboard
   dashboard: {
@@ -263,6 +270,13 @@ export interface Translations {
     rateLimited30d: string;
     failedLoginsLabel: string;
     failures: string;
+    allEventTypes: string;
+    allActions: string;
+    changeRoleFor: string;
+    realtimeDesc: string;
+    eventsByRole: string;
+    block: string;
+    allRoles: string;
   };
   // Profile
   profile: {
@@ -385,6 +399,8 @@ const en: Translations = {
     blocked: 'Blocked', verified: 'Verified', all: 'All', students: 'students',
     lessons: 'lessons', categories: 'Categories', close: 'Close', skipForNow: 'Skip for now',
     change: 'Change', student: 'Student', teacher: 'Teacher', admin: 'Admin',
+    clear: 'Clear', user: 'User', details: 'Details', expires: 'Expires',
+    records: 'records', totalEvents: 'total events', inactive: 'Inactive',
   },
   dashboard: {
     welcomeBack: 'Welcome back,', continueJourney: 'Continue your learning journey',
@@ -458,6 +474,13 @@ const en: Translations = {
     accountsBlocked30d: 'Accounts Blocked (30d)', bruteForce30d: 'Brute Force (30d)',
     rateLimited30d: 'Rate Limited (30d)', failedLoginsLabel: 'Failed logins',
     failures: 'Failures',
+    allEventTypes: 'All Event Types',
+    allActions: 'All Actions',
+    changeRoleFor: 'Change role for',
+    realtimeDesc: 'Real-time security monitoring & platform management',
+    eventsByRole: 'Events by Role',
+    block: 'Block',
+    allRoles: 'All Roles',
   },
   profile: {
     title: 'Profile', editProfile: 'Edit Profile', changePassword: 'Change Password',
@@ -543,6 +566,8 @@ const ru: Translations = {
     blocked: 'Заблокирован', verified: 'Подтверждён', all: 'Все', students: 'студентов',
     lessons: 'уроков', categories: 'Категории', close: 'Закрыть', skipForNow: 'Пропустить',
     change: 'Изменить', student: 'Студент', teacher: 'Преподаватель', admin: 'Администратор',
+    clear: 'Очистить', user: 'Пользователь', details: 'Подробности', expires: 'Истекает',
+    records: 'записей', totalEvents: 'всего событий', inactive: 'Неактивен',
   },
   dashboard: {
     welcomeBack: 'С возвращением,', continueJourney: 'Продолжайте своё обучение',
@@ -618,6 +643,13 @@ const ru: Translations = {
     accountsBlocked30d: 'Заблокировано (30д)', bruteForce30d: 'Атаки перебором (30д)',
     rateLimited30d: 'Ограничения (30д)', failedLoginsLabel: 'Неудачные входы',
     failures: 'Неудачи',
+    allEventTypes: 'Все типы событий',
+    allActions: 'Все действия',
+    changeRoleFor: 'Изменить роль для',
+    realtimeDesc: 'Мониторинг безопасности и управление платформой',
+    eventsByRole: 'События по роли',
+    block: 'Блокировать',
+    allRoles: 'Все роли',
   },
   profile: {
     title: 'Профиль', editProfile: 'Редактировать', changePassword: 'Изменить пароль',
@@ -703,6 +735,8 @@ const tk: Translations = {
     blocked: 'Bloklanan', verified: 'Tassyklanan', all: 'Hemme', students: 'talyp',
     lessons: 'sapak', categories: 'Kategoriýalar', close: 'Ýap', skipForNow: 'Geçir',
     change: 'Üýtget', student: 'Talyp', teacher: 'Mugallym', admin: 'Admin',
+    clear: 'Arassala', user: 'Ulanyjy', details: 'Jikme-jikler', expires: 'Gutarýar',
+    records: 'ýazgy', totalEvents: 'jemi waka', inactive: 'Işjeň däl',
   },
   dashboard: {
     welcomeBack: 'Hoş geldiňiz,', continueJourney: 'Öwreniş syýahatyňyzy dowam ediň',
@@ -777,6 +811,13 @@ const tk: Translations = {
     accountsBlocked30d: 'Bloklanan (30g)', bruteForce30d: 'Güýç hüjümi (30g)',
     rateLimited30d: 'Çäklendirilen (30g)', failedLoginsLabel: 'Başarylmadyk girişler',
     failures: 'Şowsuzlyk',
+    allEventTypes: 'Ähli waka görnüşleri',
+    allActions: 'Ähli hereketler',
+    changeRoleFor: 'Roly üýtget:',
+    realtimeDesc: 'Howpsuzlyk gözegçiligi we platforma dolandyryşy',
+    eventsByRole: 'Rol boýunça wakalar',
+    block: 'Blokla',
+    allRoles: 'Ähli roller',
   },
   profile: {
     title: 'Profil', editProfile: 'Redaktirle', changePassword: 'Açar sözi üýtget',
