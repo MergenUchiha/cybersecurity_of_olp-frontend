@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard, BookOpen, GraduationCap, Users, Shield,
   BarChart3, Layers, ClipboardList, LogOut, X, Menu,
-  Settings, BookMarked, Award, Database, Activity,
+  Settings, BookMarked, Award, Database, Activity, Video,
 } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import { useUIStore } from '../../lib/uiStore';
@@ -27,6 +27,9 @@ function getNavGroups(role: string, t: any): NavGroup[] {
       { label: t.nav.security,  icon: <Shield size={18} />,    to: '/admin/security' },
       { label: t.nav.analytics, icon: <BarChart3 size={18} />, to: '/admin/analytics' },
     ]},
+    { title: t.nav.communication, items: [
+      { label: t.nav.videoCalls, icon: <Video size={18} />, to: '/video-calls' },
+    ]},
     { title: t.nav.account, items: [
       { label: t.nav.profile, icon: <Settings size={18} />, to: '/profile' },
     ]},
@@ -41,6 +44,9 @@ function getNavGroups(role: string, t: any): NavGroup[] {
       { label: t.nav.myCourses, icon: <BookMarked size={18} />,   to: '/my-courses' },
       { label: t.nav.myResults, icon: <Award size={18} />,        to: '/my-results' },
     ]},
+    { title: t.nav.communication, items: [
+      { label: t.nav.videoCalls, icon: <Video size={18} />, to: '/video-calls' },
+    ]},
     { title: t.nav.account, items: [
       { label: t.nav.profile,  icon: <Settings size={18} />, to: '/profile' },
       { label: t.nav.sessions, icon: <Activity size={18} />, to: '/sessions' },
@@ -52,6 +58,9 @@ function getNavGroups(role: string, t: any): NavGroup[] {
       { label: t.nav.courses,   icon: <GraduationCap size={18}/>, to: '/courses' },
       { label: t.nav.myCourses, icon: <BookMarked size={18} />,   to: '/my-courses' },
       { label: t.nav.myResults, icon: <Award size={18} />,        to: '/my-results' },
+    ]},
+    { title: t.nav.communication, items: [
+      { label: t.nav.videoCalls, icon: <Video size={18} />, to: '/video-calls' },
     ]},
     { title: t.nav.account, items: [
       { label: t.nav.profile,  icon: <Settings size={18} />, to: '/profile' },

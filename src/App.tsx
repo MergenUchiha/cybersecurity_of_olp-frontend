@@ -9,6 +9,8 @@ import { StudentDashboardPage, CoursesPage, CourseDetailPage, MyCoursesPage, MyR
 import { TeacherDashboardPage, TeacherCoursesPage, CourseEditPage } from './pages/teacher/TeacherPages';
 import { AdminDashboardPage, AdminUsersPage, AdminCoursesPage, SecurityEventsPage, AdminSessionsPage, AuditLogsPage, AnalyticsPage } from './pages/admin/AdminPages';
 import { ProfilePage, MySessionsPage } from './pages/profile/ProfilePages';
+import VideoCallsLobby from './pages/video/VideoCallsLobby';
+import VideoCallPage from './pages/video/VideoCallPage';
 import { NotFoundPage } from './pages/NotFound';
 import { useAuthStore } from './store/authStore';
 import { useUIStore } from './lib/uiStore';
@@ -82,6 +84,9 @@ export default function App() {
             <Route path="/admin/sessions" element={<RequireRole role="ADMIN"><AdminSessionsPage /></RequireRole>} />
             <Route path="/admin/audit-logs" element={<RequireRole role="ADMIN"><AuditLogsPage /></RequireRole>} />
             <Route path="/admin/analytics" element={<RequireRole role="ADMIN"><AnalyticsPage /></RequireRole>} />
+            {/* Video Calls */}
+            <Route path="/video-calls" element={<VideoCallsLobby />} />
+            <Route path="/video-call/:roomId" element={<VideoCallPage />} />
             {/* Shared */}
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/sessions" element={<MySessionsPage />} />

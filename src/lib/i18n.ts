@@ -22,6 +22,8 @@ export interface Translations {
     explore: string;
     account: string;
     cybersecurity: string;
+    communication: string;
+    videoCalls: string;
   };
   // Auth
   auth: {
@@ -367,6 +369,7 @@ const en: Translations = {
     profile: 'Profile', signOut: 'Sign out', management: 'Management',
     learning: 'Learning', teaching: 'Teaching', explore: 'Explore',
     account: 'Account', cybersecurity: 'Cybersecurity',
+    communication: 'Communication', videoCalls: 'Video Calls',
   },
   auth: {
     welcomeBack: 'Welcome back', signIn: 'Sign in', createAccount: 'Create account',
@@ -534,6 +537,7 @@ const ru: Translations = {
     profile: 'Профиль', signOut: 'Выйти', management: 'Управление',
     learning: 'Обучение', teaching: 'Преподавание', explore: 'Обзор',
     account: 'Аккаунт', cybersecurity: 'Кибербезопасность',
+    communication: 'Коммуникация', videoCalls: 'Видеозвонки',
   },
   auth: {
     welcomeBack: 'С возвращением', signIn: 'Войти', createAccount: 'Создать аккаунт',
@@ -703,6 +707,7 @@ const tk: Translations = {
     profile: 'Profil', signOut: 'Çykmak', management: 'Dolandyryş',
     learning: 'Öwreniş', teaching: 'Okadyş', explore: 'Gözleg',
     account: 'Hasap', cybersecurity: 'Kiberhowpsuzlyk',
+    communication: 'Aragatnaşyk', videoCalls: 'Wideo jaňlar',
   },
   auth: {
     welcomeBack: 'Hoş geldiňiz', signIn: 'Giriş', createAccount: 'Hasap döretmek',
