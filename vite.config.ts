@@ -10,11 +10,11 @@ export default defineConfig({
     https: {},
     proxy: {
       "/api": {
-        target: "http://localhost:6000",
+        target: "http://157.173.103.216:6000",
         changeOrigin: true,
       },
       "/video-socket": {
-        target: "http://localhost:6000",
+        target: "http://157.173.103.216:6000",
         changeOrigin: true,
         ws: true,
         secure: false,
