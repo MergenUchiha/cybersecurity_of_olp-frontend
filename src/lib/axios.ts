@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 const isDev = window.location.port === '5173';
 const apiBaseUrl = isDev
   ? '/api'
-  : `${window.location.protocol}//${window.location.hostname}:6000/api`;
+  : `${window.location.protocol}//${window.location.hostname}:5001/api`;
 
 const api = axios.create({
   baseURL: apiBaseUrl,
