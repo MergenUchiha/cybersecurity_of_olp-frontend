@@ -359,7 +359,7 @@ export default function VideoCallPage() {
     const isDev = window.location.port === '5173';
     const wsUrl = isDev
       ? window.location.origin
-      : `${window.location.protocol}//${window.location.hostname}:5001`;
+      : `${window.location.protocol}//${window.location.hostname}:8000`;
     const sock = io(wsUrl, {
       path: '/video-socket',
       transports: ['websocket', 'polling'],
