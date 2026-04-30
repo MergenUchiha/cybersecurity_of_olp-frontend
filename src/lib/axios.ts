@@ -1,8 +1,15 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
+// In dev mode (vite dev on port 5173), the proxy handles /api.
+// In production/preview mode, connect directly to the backend on port 6000.
+const isDev = window.location.port === '5173';
+const apiBaseUrl = isDev
+  ? '/api'
+  : `${window.location.protocol}//${window.location.hostname}:6000/api`;
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: apiBaseUrl,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: false,
 });
@@ -46,7 +53,7 @@ api.interceptors.response.use(
 
       isRefreshing = true;
       try {
-        const { data } = await axios.post('/api/auth/refresh', { refreshToken });
+        const { data } = await axios.post(`${apiBaseUrl}/auth/refresh`, { refreshToken });
         const { accessToken, refreshToken: newRefresh } = data;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', newRefresh);

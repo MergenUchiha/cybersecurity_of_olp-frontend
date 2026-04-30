@@ -26,22 +26,11 @@ const ICE_SERVERS: RTCConfiguration = {
   iceServers: [
     { urls: 'stun:stun.l.google.com:19302' },
     { urls: 'stun:stun1.l.google.com:19302' },
-    {
-      urls: 'turn:openrelay.metered.ca:80',
-      username: 'openrelayproject',
-      credential: 'openrelayproject',
-    },
-    {
-      urls: 'turn:openrelay.metered.ca:443',
-      username: 'openrelayproject',
-      credential: 'openrelayproject',
-    },
-    {
-      urls: 'turn:openrelay.metered.ca:443?transport=tcp',
-      username: 'openrelayproject',
-      credential: 'openrelayproject',
-    },
+    { urls: 'stun:stun2.l.google.com:19302' },
+    { urls: 'stun:stun3.l.google.com:19302' },
+    { urls: 'stun:stun4.l.google.com:19302' },
   ],
+  iceCandidatePoolSize: 10,
 };
 
 // Pre-join lobby component — asks for camera/mic permissions before joining
@@ -365,7 +354,12 @@ export default function VideoCallPage() {
       return;
     }
 
-    const wsUrl = window.location.origin;
+    // In dev mode (vite dev on port 5173), the proxy handles it via same origin.
+    // In production/preview mode, connect directly to the backend on port 6000.
+    const isDev = window.location.port === '5173';
+    const wsUrl = isDev
+      ? window.location.origin
+      : `${window.location.protocol}//${window.location.hostname}:6000`;
     const sock = io(wsUrl, {
       path: '/video-socket',
       transports: ['websocket', 'polling'],
